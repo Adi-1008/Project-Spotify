@@ -1,6 +1,5 @@
 let currentSong = new Audio();
 let songs;
-let currFolder;
 
 function secondsToMinutesSeconds(seconds) {
     var minutes = Math.floor(seconds / 60);
@@ -14,9 +13,8 @@ function secondsToMinutesSeconds(seconds) {
     return minutes + ":" + remainingSeconds;
 }
 
-async function getSongs(folder) {
-    currFolder = folder;
-    let a = await fetch(`http://127.0.0.1:3000/${currFolder}/`);
+async function getSongs() {
+    let a = await fetch("http://127.0.0.1:3000/Songs/R&B/");
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -26,14 +24,14 @@ async function getSongs(folder) {
         const element = as[index];
         if(element.href.endsWith(".mp3"))
         {
-            songs.push(element.href.split(`/${currFolder}/`)[1]);
+            songs.push(element.href.split("R&B/")[1]);
         }
     }
     return songs
 }
 
 const playMusic=(track)=>{
-    currentSong.src = `/${currFolder}/` + track
+    currentSong.src = "/Songs/R&B/" + track
     currentSong.play()
     play.src = "Assets/pause_song.svg"
     document.querySelector(".songinfo").innerHTML = track
@@ -42,7 +40,8 @@ const playMusic=(track)=>{
 
 async function main()
 {
-    songs = await getSongs("Songs/R&B");
+    songs = await getSongs();
+    console.log(songs)
     let list = document.querySelector(".songsList").getElementsByTagName("ul")[0]
     for (const song of songs) {
         list.innerHTML = list.innerHTML + `<li> <div class="songsCard">
