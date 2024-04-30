@@ -41,7 +41,6 @@ const playMusic=(track)=>{
 async function main()
 {
     songs = await getSongs();
-    console.log(songs)
     let list = document.querySelector(".songsList").getElementsByTagName("ul")[0]
     for (const song of songs) {
         list.innerHTML = list.innerHTML + `<li> <div class="songsCard">
