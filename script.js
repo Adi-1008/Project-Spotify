@@ -107,6 +107,11 @@ async function main()
         currentSong.volume=e.target.value/100
     })
 
+    document.querySelectorAll(".card").forEach(e => {
+        e.addEventListener("click",()=>{
+            playMusic(songs[Math.floor(Math.random()*11)].replace("%20"," "));
+        })
+    });
 }
 
 main()
