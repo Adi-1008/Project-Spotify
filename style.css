@@ -44,6 +44,7 @@ body {
 }
 .up .icons img{
     display: none;
+    cursor: pointer;
 }
 .up ul {
     list-style: none;
@@ -156,6 +157,7 @@ body {
 
 .right .header img {
     display: none;
+    cursor: pointer;
 }
 
 .right .nav svg {
